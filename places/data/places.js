@@ -25,34 +25,10 @@
 
 window.PLACES = [
   {
-    // Esempio con PIU' foto: sulla miniatura le scorri con swipe/trackpad,
-    // e il clic apre la lightbox per sfogliarle tutte con le frecce.
-    photos: [
-      "photos/placeholder-1.svg",
-      "photos/placeholder-2.svg",
-      "photos/placeholder-3.svg"
-    ],
-    coords: [45.4641, 9.1919],
-    people: ["Roberto"],
-    where: "Duomo, Milano",
-    date: "Esempio — sostituisci con le tue foto"
-  },
-  {
-    photos: [
-      "photos/placeholder-2.svg",
-      "photos/placeholder-3.svg"
-    ],
-    coords: [43.7696, 11.2558],
-    people: ["Roberto", "Amici"],
-    where: "Ponte Vecchio, Firenze",
-    date: "Esempio"
-  },
-  {
-    // Esempio con una sola foto (campo "photo")
-    photo: "photos/placeholder-3.svg",
-    coords: [40.8518, 14.2681],
-    people: ["Roberto"],
-    where: "Lungomare, Napoli",
-    date: "Esempio"
+    photo: "photos/image_1338.jpg",
+    coords: [38.985732, 1.210292],
+    people: ["Roberto", "Barbara", "Rebbecca", "Giulia"],
+    where: "sa Conillera, Sant Josep de sa Talaia",
+    date: "31 agosto 2026"
   }
 ];
