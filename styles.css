@@ -98,19 +98,41 @@ a { color: inherit; }
 
 .place { margin: 0; }
 
-.place__thumb {
-  display: block;
+/* ---------- Carosello (piu' foto per luogo, scorribili) ---------- */
+.carousel {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   background: var(--thumb-bg);
-  border: 0;
-  padding: 0;
-  cursor: pointer;
   overflow: hidden;
-  position: relative;
 }
 
-.place__thumb img {
+.carousel__strip {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.carousel__strip::-webkit-scrollbar { display: none; }
+
+.carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: var(--thumb-bg);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.carousel__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -118,9 +140,48 @@ a { color: inherit; }
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
   opacity: 0;
 }
+.carousel__slide img.is-loaded { opacity: 1; }
+.carousel:hover .carousel__slide img { transform: scale(1.03); }
 
-.place__thumb img.is-loaded { opacity: 1; }
-.place__thumb:hover img { transform: scale(1.03); }
+.carousel__counter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2px 7px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.carousel__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.carousel__dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.carousel__dot.is-active {
+  background: #fff;
+  transform: scale(1.25);
+}
 
 .place__meta {
   margin-top: 12px;
@@ -212,6 +273,29 @@ a { color: inherit; }
   line-height: 1;
   cursor: pointer;
   padding: 8px;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  color: var(--fg);
+  font-size: 44px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 12px 18px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+.lightbox__nav:hover { opacity: 1; }
+.lightbox__nav--prev { left: 8px; }
+.lightbox__nav--next { right: 8px; }
+
+@media (max-width: 600px) {
+  .lightbox__nav { font-size: 34px; padding: 10px 12px; }
 }
 
 @media (max-width: 600px) {

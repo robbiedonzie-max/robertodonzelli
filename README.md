@@ -2,6 +2,8 @@
 
 Pagina fotografica minimale nello stile di [pengzhe.ng/places](https://pengzhe.ng/places):
 una griglia di miniature e, sotto ogni scatto, **coordinate** e **persone**.
+Ogni luogo può avere **più foto**: le scorri con lo swipe sulla miniatura e le
+sfogli tutte nella lightbox con le frecce (o i tasti ← →).
 
 È un sito **statico** (solo HTML/CSS/JS, nessun build, nessuna dipendenza).
 Funziona ovunque e anche aprendo `index.html` con doppio clic.
@@ -20,11 +22,17 @@ photos/             le immagini
 
 1. Metti l'immagine nella cartella `photos/` (es. `photos/milano.jpg`).
    Consiglio: lato lungo ~1200px, JPEG, così la pagina resta leggera.
-2. Apri `data/places.js` e aggiungi un blocco all'inizio dell'elenco:
+2. Apri `data/places.js` e aggiungi un blocco all'inizio dell'elenco.
+
+   Con **più foto** per lo stesso luogo (le scorri con lo swipe):
 
    ```js
    {
-     photo: "photos/milano.jpg",
+     photos: [
+       "photos/milano-1.jpg",
+       "photos/milano-2.jpg",
+       "photos/milano-3.jpg"
+     ],
      coords: [45.4642, 9.1900],        // [latitudine, longitudine]
      people: ["Roberto", "Anna"],
      where: "Duomo, Milano",
@@ -32,7 +40,13 @@ photos/             le immagini
    },
    ```
 
-   Solo `photo` è obbligatorio; gli altri campi sono facoltativi.
+   Con **una sola foto**, in alternativa, usa `photo`:
+
+   ```js
+   { photo: "photos/napoli.jpg", coords: [40.8518, 14.2681], where: "Napoli" },
+   ```
+
+   Serve `photos` (o `photo`); gli altri campi sono facoltativi.
    Ricordati la virgola tra un blocco e l'altro.
 
 ### Trovare le coordinate
