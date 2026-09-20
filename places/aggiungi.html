@@ -74,7 +74,7 @@
   <div class="wrap">
     <p><a class="back" href="./">← torna a Places</a></p>
     <h1>Aggiungi un luogo</h1>
-    <p class="lede">Cerca il posto (coordinate automatiche), scrivi le persone, trascina la foto per l'anteprima. In fondo trovi il blocco pronto da incollare in <code>places/data/places.js</code>.</p>
+    <p class="lede">Metodo consigliato: il <a href="admin/">pannello admin</a> (carichi la foto e pubblichi da solo). Questo strumento è l'alternativa manuale: cerca il posto (coordinate automatiche), scrivi le persone, e copia l'oggetto JSON da aggiungere all'elenco in <code>places/data/places.json</code>.</p>
 
     <div class="grid2">
       <div>
@@ -125,8 +125,8 @@
 
     <!-- OUTPUT -->
     <div class="out">
-      <label>Blocco da incollare in <code>places/data/places.js</code></label>
-      <textarea id="output" rows="9" readonly></textarea>
+      <label>Oggetto JSON da aggiungere all'elenco <code>luoghi</code> in <code>places/data/places.json</code></label>
+      <textarea id="output" rows="10" readonly></textarea>
       <div class="btnrow">
         <button class="btn" id="copy">Copia il blocco</button>
         <span class="ok" id="copied"></span>
@@ -137,10 +137,11 @@
       <h2>COME PUBBLICARLO</h2>
       <ol>
         <li>Carica la/e foto su GitHub nella cartella <code>places/photos/</code> (Add file → Upload files), con lo stesso nome che hai scritto sopra.</li>
-        <li>Apri <code>places/data/places.js</code> su GitHub → <strong>Edit</strong> (matita).</li>
-        <li>Incolla il blocco copiato subito dopo <code>window.PLACES = [</code> (in cima all'elenco).</li>
+        <li>Apri <code>places/data/places.json</code> su GitHub → <strong>Edit</strong> (matita).</li>
+        <li>Incolla l'oggetto copiato dentro l'elenco <code>"luoghi": [ … ]</code>, in cima, ricordando la virgola tra un oggetto e l'altro.</li>
         <li>Commit. Vercel ripubblica da solo in ~1 minuto su <code>/places</code>.</li>
       </ol>
+      <p style="margin-top:12px">In alternativa, molto più comodo dal telefono: <a href="admin/">apri il pannello admin</a>, che fa tutto da solo (upload foto + salvataggio).</p>
     </div>
   </div>
 
@@ -165,8 +166,6 @@
       $("pdate").textContent = $("date").value.trim();
     }
 
-    function jsArray(arr){ return "[" + arr.map(function(s){return '"'+s.replace(/"/g,'\\"')+'"';}).join(", ") + "]"; }
-
     function buildOutput(){
       var files = splitList($("fname").value).map(function(f){
         return f.indexOf("photos/")===0 ? f : "photos/"+f;
@@ -175,17 +174,14 @@
       var people = splitList($("people").value);
       var where=$("where").value.trim(), date=$("date").value.trim();
 
-      var lines=["  {"];
-      if(files.length>1) lines.push("    photos: "+jsArray(files)+",");
-      else lines.push('    photo: "'+(files[0]||"photos/nome-foto.jpg")+'",');
-      if(!isNaN(lat)&&!isNaN(lng)) lines.push("    coords: ["+lat+", "+lng+"],");
-      if(people.length) lines.push("    people: "+jsArray(people)+",");
-      if(where) lines.push('    where: "'+where.replace(/"/g,'\\"')+'",');
-      if(date) lines.push('    date: "'+date.replace(/"/g,'\\"')+'",');
-      // togli l'ultima virgola
-      lines[lines.length-1]=lines[lines.length-1].replace(/,$/,"");
-      lines.push("  },");
-      return lines.join("\n");
+      var obj = {};
+      obj.photos = files.length ? files : ["photos/nome-foto.jpg"];
+      if(!isNaN(lat)) obj.lat = lat;
+      if(!isNaN(lng)) obj.lng = lng;
+      if(people.length) obj.people = people;
+      if(where) obj.where = where;
+      if(date) obj.date = date;
+      return JSON.stringify(obj, null, 2);
     }
 
     function refresh(){ updatePreview(); $("output").value=buildOutput(); }
