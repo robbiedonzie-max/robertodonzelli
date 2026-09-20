@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Places — Roberto Donzelli</title>
+  <meta name="description" content="Luoghi, coordinate e persone. Un archivio fotografico di Roberto Donzelli." />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Places — Roberto Donzelli" />
+  <meta property="og:description" content="Luoghi, coordinate e persone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://robertodonzelli.it/places" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="masthead">
+      <h1>Places</h1>
+      <p class="lede">
+        Luoghi che ho fotografato. Sotto ogni scatto: le coordinate e le persone.
+      </p>
+      <p class="byline">
+        <a href="https://robertodonzelli.it">Roberto Donzelli</a>
+        <span class="sep">·</span>
+        <span id="count" class="count"></span>
+      </p>
+    </header>
+
+    <section id="grid" class="grid" aria-label="Galleria dei luoghi">
+      <!-- Le miniature vengono generate da places.js a partire da data/places.json -->
+    </section>
+
+    <footer class="foot">
+      <span>© <span id="year"></span> Roberto Donzelli</span>
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox__close" aria-label="Chiudi">&times;</button>
+    <figure class="lightbox__figure">
+      <img id="lightbox-img" alt="" />
+      <figcaption id="lightbox-caption" class="lightbox__caption"></figcaption>
+    </figure>
+  </div>
+
+  <!-- I tuoi luoghi: modifica SOLO questo file per aggiungere foto -->
+  <script src="data/places.js" defer></script>
+  <script src="places.js" defer></script>
+</body>
+</html>
