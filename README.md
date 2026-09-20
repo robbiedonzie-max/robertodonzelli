@@ -57,16 +57,29 @@ Le coordinate mostrate in pagina sono cliccabili e aprono OpenStreetMap.
 
 ## Pubblicare sotto `/places`
 
-Il modo dipende dal tuo hosting. Tre opzioni comuni:
+### Vercel (consigliato — come winefoodfan)
 
-- **Hosting tradizionale (cPanel/FTP)**: carica tutto il contenuto di questa
-  cartella dentro una sottocartella `places/` nella root del sito. Diventa
+Il repo è già pronto per Vercel: nessun build, nessuna dipendenza. Il file
+`vercel.json` fa in modo che la pagina risponda sia su `/` sia su `/places`.
+
+1. Vai su [vercel.com/new](https://vercel.com/new) e importa il repository
+   `robbiedonzie-max/robertodonzelli`.
+2. **Framework Preset: Other**, **Build Command: vuoto**, **Output Directory: vuoto**
+   (Vercel serve i file dalla root). Clic su **Deploy**.
+3. **Settings → Domains**: aggiungi `robertodonzelli.it` (e `www`), poi imposta
+   nel tuo registrar i record DNS che Vercel indica (A / CNAME).
+4. La pagina sarà su `https://robertodonzelli.it/` e su `https://robertodonzelli.it/places`.
+
+Ogni `git push` sul branch principale ripubblica il sito automaticamente.
+
+### Altre opzioni
+
+- **Hosting tradizionale (cPanel/FTP)**: carica il contenuto di questa cartella
+  dentro una sottocartella `places/` nella root del sito →
   `https://robertodonzelli.it/places/`.
-- **Netlify / Vercel / Cloudflare Pages**: collega questo repository; è già
-  pronto (nessun comando di build). Poi mappa il dominio.
-- **GitHub Pages**: attiva Pages sul repository. Per servirlo esattamente su
-  `/places`, tieni i file in una sottocartella `places/` oppure usa un
-  sottodominio `places.robertodonzelli.it`.
+- **Netlify / Cloudflare Pages**: collega il repository; è già pronto (nessun
+  comando di build), poi mappa il dominio.
+- **GitHub Pages**: attiva Pages sul repository.
 
 > Nota: le foto segnaposto (`photos/placeholder-*.svg`) e le voci d'esempio in
 > `data/places.js` servono solo a far vedere subito il layout. Sostituiscile
