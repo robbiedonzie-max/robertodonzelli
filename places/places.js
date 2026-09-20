@@ -10,15 +10,24 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   // --- Normalizzazione dati ---
+  // Rende ogni percorso foto relativo a /places/, qualunque forma abbia:
+  //   "/places/photos/x.jpg" | "/photos/x.jpg" | "photos/x.jpg" -> "photos/x.jpg"
+  function resolvePhoto(src) {
+    if (!src || /^https?:\/\//i.test(src) || /^data:/i.test(src)) return src;
+    var s = src.replace(/^\/+/, "");                 // togli slash iniziali
+    if (s.indexOf("places/photos/") === 0) s = s.slice("places/".length);
+    return s;
+  }
+
   function photosOf(p) {
     var list = [];
     if (Array.isArray(p.photos)) {
       p.photos.forEach(function (x) {
-        if (typeof x === "string") list.push(x);
-        else if (x && x.src) list.push(x.src); // tollera {src: "..."}
+        if (typeof x === "string") list.push(resolvePhoto(x));
+        else if (x && x.src) list.push(resolvePhoto(x.src)); // tollera {src: "..."}
       });
     }
-    if (!list.length && p.photo) list.push(p.photo);
+    if (!list.length && p.photo) list.push(resolvePhoto(p.photo));
     return list;
   }
 

@@ -10,8 +10,8 @@ backend:
 
 # Le foto caricate vengono salvate qui nel repo...
 media_folder: places/photos
-# ...e nei dati vengono referenziate con questo prefisso (relativo a /places/).
-public_folder: photos
+# ...e nei dati vengono referenziate con questo percorso assoluto (il sito sta in /places).
+public_folder: /places/photos
 
 site_url: https://www.robertodonzelli.it/places
 locale: it
