@@ -1,0 +1,57 @@
+# Configurazione Sveltia CMS — pannello admin di Places
+# base_url deve combaciare con l'Authorization callback URL della GitHub OAuth App.
+
+backend:
+  name: github
+  repo: robbiedonzie-max/robertodonzelli
+  branch: main
+  base_url: https://www.robertodonzelli.it
+  auth_endpoint: api/auth
+
+# Le foto caricate vengono salvate qui nel repo...
+media_folder: places/photos
+# ...e nei dati vengono referenziate con questo prefisso (relativo a /places/).
+public_folder: photos
+
+site_url: https://www.robertodonzelli.it/places
+locale: it
+
+collections:
+  - name: luoghi
+    label: Luoghi
+    files:
+      - name: elenco
+        label: Elenco dei luoghi
+        file: places/data/places.json
+        description: 'Aggiungi un luogo con "Aggiungi Luoghi". Le foto più recenti in cima.'
+        fields:
+          - name: luoghi
+            label: Luoghi
+            label_singular: Luogo
+            widget: list
+            summary: '{{fields.where}} — {{fields.date}}'
+            fields:
+              - name: photos
+                label: Foto
+                widget: list
+                hint: 'Puoi caricarne più di una: si scorrono con lo swipe.'
+                field: { name: src, label: Immagine, widget: image }
+              - name: lat
+                label: Latitudine
+                widget: number
+                value_type: float
+                required: false
+                hint: 'Es. 45.4642'
+              - name: lng
+                label: Longitudine
+                widget: number
+                value_type: float
+                required: false
+                hint: 'Es. 9.1900'
+              - name: people
+                label: Persone
+                widget: list
+                required: false
+                field: { name: nome, label: Nome, widget: string }
+              - { name: where, label: Luogo, widget: string, required: false, hint: 'Es. Duomo, Milano' }
+              - { name: date, label: Data, widget: string, required: false, hint: 'Testo libero, es. 31 agosto 2026' }
