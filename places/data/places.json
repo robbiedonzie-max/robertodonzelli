@@ -1,11 +1,18 @@
 {
   "luoghi": [
     {
-      "photos": ["photos/image_1338.jpg"],
+      "photos": [
+        "/photos/image_1338.JPG"
+      ],
       "lat": 38.985732,
       "lng": 1.210292,
-      "people": ["Roberto", "Barbara", "Rebbecca", "Giulia"],
-      "where": "sa Conillera, Sant Josep de sa Talaia",
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebbecca",
+        "Giulia"
+      ],
+      "where": "Time and space, Sant Josep de sa Talaia",
       "date": "31 agosto 2026"
     }
   ]
