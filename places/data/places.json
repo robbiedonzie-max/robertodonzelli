@@ -51,6 +51,24 @@
       ],
       "where": "Stadio San Siro, Milano, Italia",
       "date": "20 settembre 2026"
+    },
+    {
+      "photos": [
+        {
+          "light": "/places/photos/A1B653B8-C347-43C0-AA1D-4441BEDD534C.PNG",
+          "dark": "/places/photos/C7EEC79A-CF43-4AB9-B45A-79815422FB93.PNG"
+        }
+      ],
+      "lat": 29.035,
+      "lng": -13.633,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebecca",
+        "Giulia"
+      ],
+      "where": "Platja de Ses Illetes, Formentera, Spagna",
+      "date": "28 agosto 2026"
     }
   ]
 }
