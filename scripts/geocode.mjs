@@ -35,10 +35,17 @@ if (testIdx !== -1) {
 
 const data = JSON.parse(readFileSync(DATA, 'utf8'));
 const luoghi = Array.isArray(data.luoghi) ? data.luoghi : [];
+// Numero valido oppure null (tratta "", null, undefined, testo non numerico come "vuoto")
+const num = (v) => {
+  if (v === '' || v == null) return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+};
+
 let updated = 0;
 
 for (const luogo of luoghi) {
-  const hasCoords = luogo.lat != null && luogo.lng != null && !Number.isNaN(Number(luogo.lat)) && !Number.isNaN(Number(luogo.lng));
+  const hasCoords = num(luogo.lat) !== null && num(luogo.lng) !== null;
   if (hasCoords) continue;
   const where = (luogo.where || '').trim();
   if (!where) { console.log('∅ voce senza località, salto'); continue; }
