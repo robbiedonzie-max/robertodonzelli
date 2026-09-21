@@ -2,7 +2,10 @@
   "luoghi": [
     {
       "photos": [
-        "/photos/image_1338.JPG"
+        {
+          "light": "/places/photos/image_1338.JPG",
+          "dark": "/places/photos/image_1338.JPG"
+        }
       ],
       "lat": 38.985732,
       "lng": 1.210292,

@@ -34,8 +34,12 @@ collections:
               - name: photos
                 label: Foto
                 widget: list
-                hint: 'Puoi caricarne più di una: si scorrono con lo swipe.'
-                field: { name: src, label: Immagine, widget: image }
+                label_singular: Foto
+                summary: 'foto (chiara + scura)'
+                hint: 'Per ogni foto carica la versione chiara (sfondo bianco) e la scura (sfondo nero). Più foto = si scorrono con lo swipe.'
+                fields:
+                  - { name: light, label: Versione chiara (sfondo bianco), widget: image, required: false }
+                  - { name: dark, label: Versione scura (sfondo nero), widget: image, required: false }
               - name: lat
                 label: Latitudine
                 widget: number

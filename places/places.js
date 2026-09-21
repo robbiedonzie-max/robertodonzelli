@@ -1,5 +1,6 @@
 // places.js — genera la griglia leggendo i luoghi da data/places.json.
-// I dati sono gestiti dal pannello admin (/places/admin) oppure a mano nel JSON.
+// Ogni foto puo' avere una versione chiara e una scura; il tema (chiaro/scuro)
+// cambia sfondo e versione mostrata. I dati si gestiscono dal pannello /places/admin.
 
 (function () {
   "use strict";
@@ -7,28 +8,45 @@
   var grid = document.getElementById("grid");
   var countEl = document.getElementById("count");
   var yearEl = document.getElementById("year");
+  var toggle = document.getElementById("theme-toggle");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // --- Normalizzazione dati ---
-  // Rende ogni percorso foto relativo a /places/, qualunque forma abbia:
-  //   "/places/photos/x.jpg" | "/photos/x.jpg" | "photos/x.jpg" -> "photos/x.jpg"
+  // --- Tema ---
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+  function setTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem("places-theme", t); } catch (e) {}
+    applyTheme(t);
+  }
+
+  // --- Normalizzazione percorsi ---
   function resolvePhoto(src) {
-    if (!src || /^https?:\/\//i.test(src) || /^data:/i.test(src)) return src;
-    var s = src.replace(/^\/+/, "");                 // togli slash iniziali
+    if (!src || /^https?:\/\//i.test(src) || /^data:/i.test(src)) return src || "";
+    var s = src.replace(/^\/+/, "");
     if (s.indexOf("places/photos/") === 0) s = s.slice("places/".length);
     return s;
   }
 
-  function photosOf(p) {
-    var list = [];
-    if (Array.isArray(p.photos)) {
-      p.photos.forEach(function (x) {
-        if (typeof x === "string") list.push(resolvePhoto(x));
-        else if (x && x.src) list.push(resolvePhoto(x.src)); // tollera {src: "..."}
-      });
+  // Ogni foto -> { light, dark } (con fallback reciproco)
+  function toPair(x) {
+    if (typeof x === "string") { var s = resolvePhoto(x); return { light: s, dark: s }; }
+    if (x && (x.light || x.dark || x.src)) {
+      var l = resolvePhoto(x.light || x.src || x.dark);
+      var d = resolvePhoto(x.dark || x.src || x.light);
+      return { light: l, dark: d };
     }
-    if (!list.length && p.photo) list.push(resolvePhoto(p.photo));
-    return list;
+    return null;
+  }
+  function photosOf(p) {
+    var out = [];
+    if (Array.isArray(p.photos)) p.photos.forEach(function (x) { var pair = toPair(x); if (pair && (pair.light || pair.dark)) out.push(pair); });
+    if (!out.length && p.photo) { var one = toPair(p.photo); if (one) out.push(one); }
+    return out;
+  }
+  function variantSrc(pair, theme) {
+    return theme === "dark" ? (pair.dark || pair.light) : (pair.light || pair.dark);
   }
 
   function coordsOf(p) {
@@ -36,7 +54,6 @@
     if (p.lat != null && p.lng != null) return [Number(p.lat), Number(p.lng)];
     return null;
   }
-
   function formatCoords(c) {
     if (!c) return "";
     var lat = c[0], lng = c[1];
@@ -44,16 +61,8 @@
     var ns = lat >= 0 ? "N" : "S", ew = lng >= 0 ? "E" : "W";
     return Math.abs(lat).toFixed(4) + "° " + ns + ", " + Math.abs(lng).toFixed(4) + "° " + ew;
   }
-
-  function mapUrl(c) {
-    return "https://www.openstreetmap.org/?mlat=" + c[0] + "&mlon=" + c[1] + "#map=13/" + c[0] + "/" + c[1];
-  }
-
-  function peopleText(people) {
-    if (!people) return "";
-    if (Array.isArray(people)) return people.join(", ");
-    return String(people);
-  }
+  function mapUrl(c) { return "https://www.openstreetmap.org/?mlat=" + c[0] + "&mlon=" + c[1] + "#map=13/" + c[0] + "/" + c[1]; }
+  function peopleText(people) { return !people ? "" : (Array.isArray(people) ? people.join(", ") : String(people)); }
 
   function el(tag, className, text) {
     var n = document.createElement(tag);
@@ -62,17 +71,19 @@
     return n;
   }
 
-  function makeImg(src, alt) {
+  function makeImg(pair, alt) {
     var img = el("img");
-    img.loading = "lazy"; img.decoding = "async"; img.alt = alt || ""; img.src = src;
+    img.loading = "lazy"; img.decoding = "async"; img.alt = alt || "";
+    img.dataset.light = pair.light || pair.dark || "";
+    img.dataset.dark = pair.dark || pair.light || "";
+    img.src = variantSrc(pair, currentTheme());
     img.addEventListener("load", function () { img.classList.add("is-loaded"); });
     img.addEventListener("error", function () { img.classList.add("is-loaded"); img.style.opacity = "0"; });
     return img;
   }
 
-  // --- Scheda con carosello ---
   function buildPlace(p) {
-    var imgs = photosOf(p);
+    var pairs = photosOf(p);
     var coords = coordsOf(p);
     var fig = el("figure", "place");
     var label = p.where || peopleText(p.people) || "foto";
@@ -80,23 +91,23 @@
     var carousel = el("div", "carousel");
     var strip = el("div", "carousel__strip");
     strip.setAttribute("role", "group");
-    strip.setAttribute("aria-label", label + " — " + imgs.length + (imgs.length === 1 ? " foto" : " foto, scorri"));
+    strip.setAttribute("aria-label", label + " — " + pairs.length + (pairs.length === 1 ? " foto" : " foto, scorri"));
 
-    imgs.forEach(function (src, i) {
+    pairs.forEach(function (pair, i) {
       var slide = el("button", "carousel__slide");
       slide.type = "button";
-      slide.setAttribute("aria-label", "Ingrandisci " + label + " (" + (i + 1) + " di " + imgs.length + ")");
-      slide.appendChild(makeImg(src, p.alt || label));
-      slide.addEventListener("click", function () { openLightbox(imgs, i, p, coords); });
+      slide.setAttribute("aria-label", "Ingrandisci " + label + " (" + (i + 1) + " di " + pairs.length + ")");
+      slide.appendChild(makeImg(pair, p.alt || label));
+      slide.addEventListener("click", function () { openLightbox(pairs, i, p, coords); });
       strip.appendChild(slide);
     });
     carousel.appendChild(strip);
 
-    if (imgs.length > 1) {
-      var counter = el("span", "carousel__counter", "1 / " + imgs.length);
+    if (pairs.length > 1) {
+      var counter = el("span", "carousel__counter", "1 / " + pairs.length);
       carousel.appendChild(counter);
       var dots = el("div", "carousel__dots");
-      var dotEls = imgs.map(function (_, i) {
+      var dotEls = pairs.map(function (_, i) {
         var d = el("button", "carousel__dot" + (i === 0 ? " is-active" : ""));
         d.type = "button"; d.setAttribute("aria-label", "Vai alla foto " + (i + 1));
         d.addEventListener("click", function () { strip.scrollTo({ left: i * strip.clientWidth, behavior: "smooth" }); });
@@ -109,8 +120,8 @@
         raf = requestAnimationFrame(function () {
           raf = null;
           var idx = Math.round(strip.scrollLeft / strip.clientWidth);
-          idx = Math.max(0, Math.min(imgs.length - 1, idx));
-          counter.textContent = (idx + 1) + " / " + imgs.length;
+          idx = Math.max(0, Math.min(pairs.length - 1, idx));
+          counter.textContent = (idx + 1) + " / " + pairs.length;
           dotEls.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
         });
       });
@@ -143,7 +154,7 @@
 
   function renderLightbox() {
     if (!lb || !lbGroup.length) return;
-    lbImg.src = lbGroup[lbIndex];
+    lbImg.src = variantSrc(lbGroup[lbIndex], currentTheme());
     lbImg.alt = (lbPlace && (lbPlace.alt || lbPlace.where)) || "";
     lbCap.innerHTML = "";
     var coordsStr = formatCoords(lbCoords);
@@ -186,15 +197,23 @@
     else if (e.key === "ArrowRight") step(1);
   });
 
+  // --- Cambio tema: aggiorna tutte le immagini alla versione giusta ---
+  function applyTheme(theme) {
+    var imgs = document.querySelectorAll(".carousel__slide img");
+    imgs.forEach(function (img) {
+      var want = theme === "dark" ? (img.dataset.dark || img.dataset.light) : (img.dataset.light || img.dataset.dark);
+      if (want && img.getAttribute("src") !== want) img.src = want;
+    });
+    if (lb && lb.classList.contains("is-open") && lbGroup.length) renderLightbox();
+  }
+  if (toggle) toggle.addEventListener("click", function () { setTheme(currentTheme() === "dark" ? "light" : "dark"); });
+
   // --- Caricamento dati ---
   function render(places) {
     if (countEl) countEl.textContent = places.length + (places.length === 1 ? " luogo" : " luoghi");
     if (!grid) return;
     grid.innerHTML = "";
-    if (!places.length) {
-      grid.appendChild(el("p", "lede", "Ancora nessuna foto."));
-      return;
-    }
+    if (!places.length) { grid.appendChild(el("p", "lede", "Ancora nessuna foto.")); return; }
     var frag = document.createDocumentFragment();
     places.forEach(function (p) { frag.appendChild(buildPlace(p)); });
     grid.appendChild(frag);
