@@ -12,7 +12,7 @@
       "people": [
         "Roberto",
         "Barbara",
-        "Rebecca",
+        "Rebbecca",
         "Giulia"
       ],
       "where": "Time and space, Sant Josep de sa Talaia",
@@ -35,6 +35,22 @@
       ],
       "where": "Envissa, Spagna",
       "date": "28 agosto 2026"
+    },
+    {
+      "photos": [
+        {
+          "light": "/places/photos/Immagine Codex 21 set 2026, 16_29_48.png",
+          "dark": "/places/photos/Immagine Codex 21 set 2026, 16_29_56.png"
+        }
+      ],
+      "lat": null,
+      "lng": null,
+      "people": [
+        "Roberto",
+        "Rebecca"
+      ],
+      "where": "Stadio San Siro, Milano, Italia",
+      "date": "20 settembre 2026"
     }
   ]
 }
