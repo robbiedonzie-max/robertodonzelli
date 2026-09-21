@@ -175,7 +175,7 @@
       var where=$("where").value.trim(), date=$("date").value.trim();
 
       var obj = {};
-      obj.photos = files.length ? files : ["photos/nome-foto.jpg"];
+      obj.photos = (files.length ? files : ["photos/nome-foto.jpg"]).map(function(f){ return { light: f, dark: f }; });
       if(!isNaN(lat)) obj.lat = lat;
       if(!isNaN(lng)) obj.lng = lng;
       if(people.length) obj.people = people;

@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="light">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Places — Roberto Donzelli</title>
   <meta name="description" content="Luoghi, coordinate e persone. Un archivio fotografico di Roberto Donzelli." />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    // Imposta il tema prima del rendering per evitare il "lampo" (default: chiaro)
+    (function () {
+      var t = "light";
+      try { t = localStorage.getItem("places-theme") || "light"; } catch (e) {}
+      document.documentElement.setAttribute("data-theme", t === "dark" ? "dark" : "light");
+    })();
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Places — Roberto Donzelli" />
@@ -38,6 +46,10 @@
       <span>© <span id="year"></span> Roberto Donzelli</span>
     </footer>
   </main>
+
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambia tema chiaro/scuro" title="Chiaro / scuro">
+    <span class="theme-toggle__icon" aria-hidden="true"></span>
+  </button>
 
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
