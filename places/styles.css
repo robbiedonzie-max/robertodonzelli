@@ -42,7 +42,7 @@ body { transition: background-color 0.25s ease, color 0.25s ease; }
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 40;
+  z-index: 60; /* sopra la lightbox (50): resta cliccabile anche a immagine aperta */
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 .theme-toggle:hover { border-color: var(--fg); }
