@@ -4,7 +4,7 @@
       "photos": [
         {
           "light": "/places/photos/6EB25DE1-7C86-4599-9FE6-8D4378D34EFA.PNG",
-          "dark": "/places/photos/0761D65D-EA26-47D0-8474-348E14CEBDD4.PNG"
+          "dark": "/places/photos/Immagine Codex 22 set 2026, 00_37_20.png"
         }
       ],
       "lat": 38.985732,
@@ -22,7 +22,7 @@
       "photos": [
         {
           "light": "/places/photos/IMG_18EABF5F-618A-455C-9AC4-361FB539CAA2.PNG",
-          "dark": "/places/photos/IMG_6CECCC63-BC0E-4F5A-B710-D12C6C912C8E.PNG"
+          "dark": "/places/photos/Immagine Codex 22 set 2026, 00_37_14.png"
         }
       ],
       "lat": 38.5432,
@@ -77,8 +77,8 @@
           "dark": "/places/photos/0881D33F-75D3-4507-9702-4F15463DDE35.PNG"
         }
       ],
-      "lat": 44.0376696,
-      "lng": 10.0455044,
+      "lat": null,
+      "lng": null,
       "people": [
         "Roberto",
         "Barbara",
