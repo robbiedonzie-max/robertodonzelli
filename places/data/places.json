@@ -77,15 +77,15 @@
           "dark": "/places/photos/0881D33F-75D3-4507-9702-4F15463DDE35.PNG"
         }
       ],
-      "lat": 44.0376696,
-      "lng": 10.0455044,
+      "lat": null,
+      "lng": null,
       "people": [
         "Roberto",
         "Barbara",
         "Rebecca",
         "Giulia"
       ],
-      "where": "Marina di Carrara, Italia",
+      "where": "Kyubi Club, Marina di Carrara, Italia",
       "date": "23 agosto 2026"
     }
   ]
