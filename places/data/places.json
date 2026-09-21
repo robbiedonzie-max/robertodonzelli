@@ -17,6 +17,24 @@
       ],
       "where": "Time and space, Sant Josep de sa Talaia",
       "date": "31 agosto 2026"
+    },
+    {
+      "photos": [
+        {
+          "light": "/places/photos/IMG_18EABF5F-618A-455C-9AC4-361FB539CAA2.PNG",
+          "dark": "/places/photos/IMG_6CECCC63-BC0E-4F5A-B710-D12C6C912C8E.PNG"
+        }
+      ],
+      "lat": 38.5432,
+      "lng": 1.2558,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebecca",
+        "Giulia"
+      ],
+      "where": "Envissa, Spagna",
+      "date": "28 agosto 2026"
     }
   ]
 }
