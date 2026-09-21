@@ -1,0 +1,32 @@
+name: Geocoding luoghi
+
+on:
+  push:
+    branches: [main]
+    paths: ['places/data/places.json']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Compila le coordinate mancanti dalla località
+        run: node scripts/geocode.mjs
+      - name: Commit delle coordinate
+        run: |
+          if ! git diff --quiet places/data/places.json; then
+            git config user.name "geocode-bot"
+            git config user.email "actions@github.com"
+            git add places/data/places.json
+            git commit -m "Geocoding automatico dei nuovi luoghi"
+            git push
+          else
+            echo "Nessun luogo da geocodificare"
+          fi
