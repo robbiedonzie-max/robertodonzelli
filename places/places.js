@@ -64,6 +64,23 @@
   function mapUrl(c) { return "https://www.openstreetmap.org/?mlat=" + c[0] + "&mlon=" + c[1] + "#map=13/" + c[0] + "/" + c[1]; }
   function peopleText(people) { return !people ? "" : (Array.isArray(people) ? people.join(", ") : String(people)); }
 
+  // --- Data: formattazione e ordinamento ---
+  var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+  function formatDate(d) {
+    if (!d) return "";
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
+    if (m) return parseInt(m[3], 10) + " " + MESI[parseInt(m[2], 10) - 1] + " " + m[1];
+    return d; // testo libero: mostrato com'è
+  }
+  function dateTs(d) {
+    if (!d) return -Infinity;
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
+    if (m) return Date.UTC(+m[1], +m[2] - 1, +m[3]);
+    var it = /(\d{1,2})\s+([a-zàèéìòù]+)\s+(\d{4})/i.exec(d);
+    if (it) { var mi = MESI.indexOf(it[2].toLowerCase()); if (mi >= 0) return Date.UTC(+it[3], mi, +it[1]); }
+    return -Infinity; // senza data valida → in fondo
+  }
+
   function el(tag, className, text) {
     var n = document.createElement(tag);
     if (className) n.className = className;
@@ -138,7 +155,7 @@
     var ppl = peopleText(p.people);
     if (ppl) meta.appendChild(el("div", "place__people", ppl));
     if (p.where) meta.appendChild(el("div", "place__where", p.where));
-    if (p.date) meta.appendChild(el("div", "place__date", p.date));
+    if (p.date) meta.appendChild(el("div", "place__date", formatDate(p.date)));
     fig.appendChild(meta);
     return fig;
   }
@@ -210,6 +227,8 @@
 
   // --- Caricamento dati ---
   function render(places) {
+    // Ordina per data, più recente prima (in alto a sinistra)
+    places = places.slice().sort(function (a, b) { return dateTs(b.date) - dateTs(a.date); });
     if (countEl) countEl.textContent = places.length + (places.length === 1 ? " luogo" : " luoghi");
     if (!grid) return;
     grid.innerHTML = "";

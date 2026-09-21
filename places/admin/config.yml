@@ -40,22 +40,29 @@ collections:
                 fields:
                   - { name: light, label: Versione chiara (sfondo bianco), widget: image, required: false }
                   - { name: dark, label: Versione scura (sfondo nero), widget: image, required: false }
+              - { name: where, label: Luogo, widget: string, required: false, hint: 'Es. Duomo, Milano — da qui vengono calcolate le coordinate' }
               - name: lat
                 label: Latitudine
                 widget: number
                 value_type: float
                 required: false
-                hint: 'Es. 45.4642'
+                hint: 'Lascia vuoto: si compila da solo dalla località dopo il salvataggio (puoi comunque correggerlo)'
               - name: lng
                 label: Longitudine
                 widget: number
                 value_type: float
                 required: false
-                hint: 'Es. 9.1900'
+                hint: 'Lascia vuoto: si compila da solo dalla località dopo il salvataggio'
               - name: people
                 label: Persone
                 widget: list
                 required: false
                 field: { name: nome, label: Nome, widget: string }
-              - { name: where, label: Luogo, widget: string, required: false, hint: 'Es. Duomo, Milano' }
-              - { name: date, label: Data, widget: string, required: false, hint: 'Testo libero, es. 31 agosto 2026' }
+              - name: date
+                label: Data
+                widget: datetime
+                format: 'YYYY-MM-DD'
+                date_format: 'DD/MM/YYYY'
+                time_format: false
+                required: false
+                hint: 'Ordina la griglia: le più recenti a sinistra'
