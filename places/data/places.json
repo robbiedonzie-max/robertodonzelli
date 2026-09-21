@@ -40,7 +40,7 @@
       "photos": [
         {
           "light": "/places/photos/Immagine Codex 21 set 2026, 16_29_48.png",
-          "dark": "/places/photos/Immagine Codex 21 set 2026, 16_29_56.png"
+          "dark": "/places/photos/download.png"
         }
       ],
       "lat": 45.4785,
@@ -56,7 +56,7 @@
       "photos": [
         {
           "light": "/places/photos/A1B653B8-C347-43C0-AA1D-4441BEDD534C.PNG",
-          "dark": "/places/photos/C7EEC79A-CF43-4AB9-B45A-79815422FB93.PNG"
+          "dark": "/places/photos/download (1).png"
         }
       ],
       "lat": 29.035,
@@ -74,11 +74,11 @@
       "photos": [
         {
           "light": "/places/photos/B5E652F2-5D61-40EF-9B7C-B1A79B0B14F9.PNG",
-          "dark": "/places/photos/0881D33F-75D3-4507-9702-4F15463DDE35.PNG"
+          "dark": "/places/photos/pasted-image-1790030501324.png"
         }
       ],
-      "lat": 44.0376696,
-      "lng": 10.0455044,
+      "lat": null,
+      "lng": null,
       "people": [
         "Roberto",
         "Barbara",
