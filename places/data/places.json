@@ -59,8 +59,8 @@
           "dark": "/places/photos/C7EEC79A-CF43-4AB9-B45A-79815422FB93.PNG"
         }
       ],
-      "lat": 38.7596941,
-      "lng": 1.4357998,
+      "lat": 29.035,
+      "lng": -13.633,
       "people": [
         "Roberto",
         "Barbara",
@@ -69,6 +69,24 @@
       ],
       "where": "Platja de Ses Illetes, Formentera, Spagna",
       "date": "28 agosto 2026"
+    },
+    {
+      "photos": [
+        {
+          "light": "/places/photos/B5E652F2-5D61-40EF-9B7C-B1A79B0B14F9.PNG",
+          "dark": "/places/photos/0881D33F-75D3-4507-9702-4F15463DDE35.PNG"
+        }
+      ],
+      "lat": null,
+      "lng": null,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebecca",
+        "Giulia"
+      ],
+      "where": "Marina di Carrara, Italia",
+      "date": "23 agosto 2026"
     }
   ]
 }
