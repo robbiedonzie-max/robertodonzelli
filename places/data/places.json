@@ -3,6 +3,22 @@
     {
       "photos": [
         {
+          "light": "/places/photos/pantheon-giorno.png",
+          "dark": "/places/photos/pantheon-notte.png"
+        }
+      ],
+      "lat": 41.898616,
+      "lng": 12.4768334,
+      "people": [
+        "Roberto",
+        "Roberto"
+      ],
+      "where": "Pantheon, Roma, Italia",
+      "date": "1 ottobre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/6EB25DE1-7C86-4599-9FE6-8D4378D34EFA.PNG",
           "dark": "/places/photos/0761D65D-EA26-47D0-8474-348E14CEBDD4.PNG"
         }
