@@ -7,14 +7,14 @@
           "dark": "/places/photos/pantheon-notte.png"
         }
       ],
+      "where": "Pantheon, Roma, Italia",
       "lat": 41.898616,
       "lng": 12.4768334,
       "people": [
         "Roberto",
         "Roberto"
       ],
-      "where": "Pantheon, Roma, Italia",
-      "date": "1 ottobre 2026"
+      "date": ""
     },
     {
       "photos": [
@@ -23,16 +23,16 @@
           "dark": "/places/photos/Immagine Codex 22 set 2026, 00_37_20.png"
         }
       ],
+      "where": "Time and space, Sant Josep de sa Talaia",
       "lat": 38.985732,
       "lng": 1.210292,
       "people": [
         "Roberto",
         "Barbara",
-        "Rebbecca",
+        "Rebecca",
         "Giulia"
       ],
-      "where": "Time and space, Sant Josep de sa Talaia",
-      "date": "31 agosto 2026"
+      "date": ""
     },
     {
       "photos": [
@@ -41,6 +41,7 @@
           "dark": "/places/photos/Immagine Codex 22 set 2026, 00_37_14.png"
         }
       ],
+      "where": "Envissa, Spagna",
       "lat": 38.5432,
       "lng": 1.2558,
       "people": [
@@ -49,7 +50,6 @@
         "Rebecca",
         "Giulia"
       ],
-      "where": "Envissa, Spagna",
       "date": "28 agosto 2026"
     },
     {
@@ -59,13 +59,13 @@
           "dark": "/places/photos/download.png"
         }
       ],
+      "where": "Stadio San Siro, Milano, Italia",
       "lat": 45.4785,
       "lng": 9.1222,
       "people": [
         "Roberto",
         "Rebecca"
       ],
-      "where": "Stadio San Siro, Milano, Italia",
       "date": "20 settembre 2026"
     },
     {
@@ -75,6 +75,7 @@
           "dark": "/places/photos/download (1).png"
         }
       ],
+      "where": "Platja de Ses Illetes, Formentera, Spagna",
       "lat": 29.035,
       "lng": -13.633,
       "people": [
@@ -83,7 +84,6 @@
         "Rebecca",
         "Giulia"
       ],
-      "where": "Platja de Ses Illetes, Formentera, Spagna",
       "date": "28 agosto 2026"
     },
     {
@@ -93,6 +93,7 @@
           "dark": "/places/photos/pasted-image-1790030501324.png"
         }
       ],
+      "where": "Kyubi Club, Marina di Carrara, Italia",
       "lat": 44.0376696,
       "lng": 10.0455044,
       "people": [
@@ -101,7 +102,6 @@
         "Rebecca",
         "Giulia"
       ],
-      "where": "Kyubi Club, Marina di Carrara, Italia",
       "date": "23 agosto 2026"
     }
   ]
