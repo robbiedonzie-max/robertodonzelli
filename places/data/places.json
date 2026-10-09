@@ -3,6 +3,21 @@
     {
       "photos": [
         {
+          "light": "/places/photos/casa-format-giorno.png",
+          "dark": "/places/photos/casa-format-notte.png"
+        }
+      ],
+      "where": "Casa Format, Torino, Italia",
+      "lat": 45.0030879,
+      "lng": 7.574333,
+      "people": [
+        "Roberto"
+      ],
+      "date": "9 ottobre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/pantheon-giorno.png",
           "dark": "/places/photos/pantheon-notte.png"
         }
