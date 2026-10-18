@@ -3,6 +3,22 @@
     {
       "photos": [
         {
+          "light": "/places/photos/milan-store-sud-giorno.png",
+          "dark": "/places/photos/milan-store-sud-notte.png"
+        }
+      ],
+      "where": "Milan Store Sud, Stadio San Siro, Milano, Italia",
+      "lat": 45.4782003,
+      "lng": 9.123964,
+      "people": [
+        "Roberto",
+        "Rebecca"
+      ],
+      "date": "18 ottobre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/ivrea-santo-stefano-giorno.png",
           "dark": "/places/photos/ivrea-santo-stefano-notte.png"
         }
