@@ -3,6 +3,26 @@
     {
       "photos": [
         {
+          "light": "/places/photos/duomo-cremona-giorno.png",
+          "dark": "/places/photos/duomo-cremona-notte.png"
+        }
+      ],
+      "lat": 45.1335544,
+      "lng": 10.0255885,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Giulia",
+        "Matteo",
+        "Daniela",
+        "Irene"
+      ],
+      "where": "Duomo di Cremona, Cremona, Italia",
+      "date": "17 ottobre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/milan-store-sud-giorno.png",
           "dark": "/places/photos/milan-store-sud-notte.png"
         }
