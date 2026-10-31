@@ -3,6 +3,21 @@
     {
       "photos": [
         {
+          "light": "/places/photos/galbusera-nera-giorno.png",
+          "dark": "/places/photos/galbusera-nera-notte.png"
+        }
+      ],
+      "where": "Cascina Galbusera Nera, La Valletta Brianza (LC), Italia",
+      "lat": 45.7250832,
+      "lng": 9.3682071,
+      "people": [
+        "Roberto"
+      ],
+      "date": "31 ottobre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/duomo-cremona-giorno.png",
           "dark": "/places/photos/duomo-cremona-notte.png"
         }
