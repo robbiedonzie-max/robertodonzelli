@@ -3,6 +3,36 @@
     {
       "photos": [
         {
+          "light": "/places/photos/allianz-cloud-giorno.png",
+          "dark": "/places/photos/allianz-cloud-notte.png"
+        }
+      ],
+      "where": "Allianz Cloud, Milano, Italia",
+      "lat": 45.4826066,
+      "lng": 9.1422404,
+      "people": [
+        "Roberto"
+      ],
+      "date": "18 novembre 2026"
+    },
+    {
+      "photos": [
+        {
+          "light": "/places/photos/citylife-giorno.png",
+          "dark": "/places/photos/citylife-notte.png"
+        }
+      ],
+      "where": "CityLife, Milano, Italia",
+      "lat": 45.4783108,
+      "lng": 9.1570584,
+      "people": [
+        "Roberto"
+      ],
+      "date": "18 novembre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/galbusera-nera-giorno.png",
           "dark": "/places/photos/galbusera-nera-notte.png"
         }
