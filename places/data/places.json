@@ -3,6 +3,22 @@
     {
       "photos": [
         {
+          "light": "/places/photos/gyozeria-viale-monza-giorno.png",
+          "dark": "/places/photos/gyozeria-viale-monza-notte.png"
+        }
+      ],
+      "lat": 45.4915229,
+      "lng": 9.2180899,
+      "people": [
+        "Roberto",
+        "Giulia"
+      ],
+      "where": "La Gyozeria, Viale Monza, Milano, Italia",
+      "date": "16 novembre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/allianz-cloud-giorno.png",
           "dark": "/places/photos/allianz-cloud-notte.png"
         }
