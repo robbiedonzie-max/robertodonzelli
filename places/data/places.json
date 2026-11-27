@@ -3,6 +3,24 @@
     {
       "photos": [
         {
+          "light": "/places/photos/basilea-marktplatz-giorno.png",
+          "dark": "/places/photos/basilea-marktplatz-notte.png"
+        }
+      ],
+      "lat": 47.5581295,
+      "lng": 7.5881165,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebecca",
+        "Giulia"
+      ],
+      "where": "Rathaus, Piazza del Mercato, Basilea, Svizzera",
+      "date": "27 novembre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/lugano-giorno.png",
           "dark": "/places/photos/lugano-notte.png"
         }
