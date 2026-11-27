@@ -3,6 +3,24 @@
     {
       "photos": [
         {
+          "light": "/places/photos/lugano-giorno.png",
+          "dark": "/places/photos/lugano-notte.png"
+        }
+      ],
+      "where": "Scritta MY LUGANO, Giardino Belvedere, Lugano, Svizzera",
+      "lat": 45.9991875,
+      "lng": 8.9498832,
+      "people": [
+        "Roberto",
+        "Barbara",
+        "Rebecca",
+        "Giulia"
+      ],
+      "date": "26 novembre 2026"
+    },
+    {
+      "photos": [
+        {
           "light": "/places/photos/gyozeria-viale-monza-giorno.png",
           "dark": "/places/photos/gyozeria-viale-monza-notte.png"
         }
